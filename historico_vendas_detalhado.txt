@@ -1,0 +1,4 @@
+[agora.strftime("%d/%m/%y %H:%M:%S)] Item: misto-quente    | R$    15.00
+[agora.strftime("%d/%m/%y %H:%M:%S)] Item: bauru           | R$    14.00
+[03/05/26 22:07:13] item: bauru | R$ 14.0
+[03/05/26 22:07:20] item: bauru | R$ 14.0
