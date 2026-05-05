@@ -11,8 +11,13 @@ def carregar_estoque_do_disco():
         return json.load(f)
     
 def salvar_estoque_no_disco(estoque):
-    with open(ARQUIVO_ESTOQUE, "w", encoding="utf-8") as f:
-        json.dump(estoque, f, indent=4)
+    try:
+        with open("estoque_insumos.json", "w", encoding="utf-8") as f:
+            json.dump(estoque, f, indent=4, ensure_ascii=False)
+        return True
+    except Exception as e:
+        print(f'Erro ao salvar estoque: {e}')
+        return False
 
 def gravar_linha_log(mensagem):
     with open(ARQUIVO_LOG, "a", encoding="utf-8") as f:

@@ -22,10 +22,22 @@ def rodar_sistema():
         opcao = interface.exibir_menu_principal(usuario_logado.upper(), saldo_sessao)
 
         if opcao == '1':
-            # Venda (Acesso livre para todos os níveis)
-            print(f"\n[PDV] Atendente: {usuario_logado}")
-            # Aqui entraria sua função de realizar_venda...
-            input("\nRecurso de venda em desenvolvimento... Enter para voltar.")
+            # 1. Perguntar o que está vendendo
+            item = input('Qual item foi vendido? (Ex: Pão Frances, bolo): ').strip()
+
+            try:
+                qtd = int(input(f'Quantidade de {item}: '))
+                sucesso, mensagem = processamento.processar_venda(estoque, item, qtd)
+                if sucesso:
+                    print(f'\n[OK] {mensagem}')
+                    saldo_sessao += (qtd * 0.50)
+                else: 
+                    print(f'\n[ERRO]: {mensagem}')
+            
+            except ValueError:
+                print('\nDigite um número válido para a quantidade!')
+
+            input('\nPressioneEnter para continuar')
 
         elif opcao == '2':
             # Consultar Estoque (Nível 0 e 1 podem ver)

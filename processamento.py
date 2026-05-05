@@ -1,3 +1,4 @@
+import dados
 from datetime import datetime
 
 def calcular_bi(tipo_filtro, valor_alvo, caminho_log):
@@ -21,3 +22,12 @@ def calcular_bi(tipo_filtro, valor_alvo, caminho_log):
     except:
         return {}
     
+def processar_venda(estoque, item_vendido, quantidade):
+    if item_vendido in estoque:
+        if estoque[item_vendido] >= quantidade:
+            estoque[item_vendido] -= quantidade
+            dados.salvar_estoque_no_disco(estoque)
+            return True, f'Venda de {quantidade} {item_vendido}(s) realizada!'
+        else:
+            return False, 'Estoque insuficiente!'
+    return False, 'Item não encontrado do catálogo!'
